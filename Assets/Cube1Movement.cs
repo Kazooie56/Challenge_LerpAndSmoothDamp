@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Cube1Movement : MonoBehaviour
 {
-    public Vector3 a = new Vector3 (-1, 1, 0);
-    public Vector3 b = new Vector3 (-1, 3, 0);
+    public Vector3 a = new Vector3(-1, 1, 0);
+    public Vector3 b = new Vector3(-1, 3, 0);
     float duration = 3f;
 
     public float timer = 0f;
     private bool goingToB = true;
-    
+
     void Start()
     {
         transform.position = a;
@@ -22,27 +22,26 @@ public class Cube1Movement : MonoBehaviour
         timer += Time.deltaTime;
         float t = timer / duration;
 
-            if (goingToB)
+        if (goingToB)                                   // if goingToB is true
         {
-            transform.position = Vector3.Lerp(a, b, t);
+            transform.position = Vector3.Lerp(a, b, t);     //goes to b
         }
 
-            else
-                transform.position = Vector3.Lerp(b, a, t);
+        else
+            transform.position = Vector3.Lerp(b, a, t); // if not, goes to a
 
-            if (timer >= 3)
+        if (timer >= 3)                                 // when timer reaches 3
+        {
+            timer = 0f;                                 // timer is put to 0
+            if (goingToB == true)                           // if going to b
             {
-                timer = 0f;
-            if (goingToB == true)
-            {
-                goingToB = false;
-
+                goingToB = false;                           // now you're not
             }
             else
-            { goingToB = false == goingToB;}
+            {
+                goingToB = !goingToB;               // otherwise flips the bool, go to b
+            }
         }
-
-            //transform.position = Vector3.Lerp(a, b, t); //Time.time / Time.deltaTime 
     }
 }
 //In Unity, demonstrate two gameobjects moving:
